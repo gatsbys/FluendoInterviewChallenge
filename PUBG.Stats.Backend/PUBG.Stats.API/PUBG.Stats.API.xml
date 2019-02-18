@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PUBG.Stats.API</name>
+    </assembly>
+    <members>
+        <member name="T:PUBG.Stats.API.Controllers.LeaderboardController">
+            <summary>
+            Endpoint to get leaderboard stats.
+            </summary>
+        </member>
+        <member name="M:PUBG.Stats.API.Controllers.LeaderboardController.#ctor(PUBG.Stats.API.Services.Abstractions.ILeaderboardService,Microsoft.Extensions.Caching.Distributed.IDistributedCache,Microsoft.Extensions.Options.IOptions{PUBG.Stats.API.Configuration.CacheConfiguration})">
+            <inheritdoc cref="T:PUBG.Stats.API.Controllers.LeaderboardController"/>
+        </member>
+        <member name="M:PUBG.Stats.API.Controllers.LeaderboardController.Get(System.String)">
+            <summary>
+            Returns the leaderboard info for the given game mode.
+            </summary>
+            <param name="gameMode"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PUBG.Stats.API.Controllers.PlayerController">
+            <summary>
+            Endpoint to check player stats.
+            </summary>
+        </member>
+        <member name="M:PUBG.Stats.API.Controllers.PlayerController.#ctor(PUBG.Stats.API.Services.Abstractions.IPlayerLifetimeStatsService,Microsoft.Extensions.Caching.Distributed.IDistributedCache,Microsoft.Extensions.Options.IOptions{PUBG.Stats.API.Configuration.CacheConfiguration},PUBG.Stats.API.Services.Abstractions.IReloadStatsService,PUBG.Stats.API.Services.Abstractions.IFallbackPlayerService)">
+            <inheritdoc cref="T:PUBG.Stats.API.Controllers.PlayerController"/>
+        </member>
+        <member name="M:PUBG.Stats.API.Controllers.PlayerController.GetAccountIdAsync(System.String)">
+            <summary>
+            Returns the stats for the given player id. 
+            </summary>
+            <param name="accountId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PUBG.Stats.API.Controllers.PlayerController.GetAccountNameAsync(System.String)">
+            <summary>
+            Returns the stats for the given player name, if the account is not on Fluendo system it will be retrieved from PUBG Api via backend system. 
+            </summary>
+            <param name="playerName"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

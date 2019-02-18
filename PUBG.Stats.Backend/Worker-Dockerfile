@@ -1,0 +1,22 @@
+FROM microsoft/dotnet:2.2-sdk AS build-env
+EXPOSE 80
+WORKDIR /app
+
+# Copy csproj and restore as distinct layers
+COPY PUBG.Stats.Worker/*.csproj ./PUBG.Stats.Worker/
+COPY PUBG.Stats.Core.Hosting/*.csproj ./PUBG.Stats.Core.Hosting/
+COPY PUBG.Stats.Core.Services/*.csproj ./PUBG.Stats.Core.Services/
+
+RUN dotnet restore PUBG.Stats.Worker/PUBG.Stats.Worker.csproj
+
+# Copy everything else and build
+COPY . ./
+RUN dotnet publish PUBG.Stats.Worker/PUBG.Stats.Worker.csproj -c Release -o out
+
+# Build runtime image
+FROM microsoft/dotnet:2.2-aspnetcore-runtime AS runtime
+WORKDIR /app
+COPY --from=build-env /app/PUBG.Stats.Worker/out/ .
+ENV ASPNETCORE_URLS=http://+:5000
+
+ENTRYPOINT ["dotnet" ,"PUBG.Stats.Worker.dll"]
