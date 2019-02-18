@@ -77,6 +77,6 @@ If you want to run docker compose you first need the following :
 
 Then you need to be on the solution root path and run
 ```sh
-$ docker-compose --no-cache 
+$ docker-compose build --no-cache 
 $ docker-compose up
 ```
